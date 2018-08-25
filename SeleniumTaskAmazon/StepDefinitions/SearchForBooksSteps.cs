@@ -1,10 +1,13 @@
-﻿using TechTalk.SpecFlow;
+﻿using SeleniumTaskAmazon.Pages;
+using TechTalk.SpecFlow;
 
 namespace SeleniumTaskAmazon.StepDefinitions
 {
     [Binding]
     public class SearchForBooksSteps
     {
+        private HomePage page = ScenarioContext.Current.Get<HomePage>();
+
         [When(@"I select category (.*)")]
         public void SelectCategory(string category)
         {
