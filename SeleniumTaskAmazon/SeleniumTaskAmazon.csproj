@@ -83,6 +83,7 @@
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\BootstrapSteps.cs" />
+    <Compile Include="StepDefinitions\SearchForBooksSteps.cs" />
     <Compile Include="StepDefinitions\SelectBookSteps.cs" />
   </ItemGroup>
   <ItemGroup>
