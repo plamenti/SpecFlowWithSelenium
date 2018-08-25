@@ -18,6 +18,12 @@ namespace SeleniumTaskAmazon.Helpers
                 timeout = DefaultTimeoutTime;
             }
 
+            if (driver == null)
+            {
+                //TODO: Log Error
+                throw new ArgumentNullException("Driver used in Wait can not be null!");
+            }
+
             return new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeout));
         }
     }
