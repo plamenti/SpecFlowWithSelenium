@@ -34,7 +34,7 @@ namespace SeleniumTaskAmazon.Helpers
                     return new EdgeDriver();
                 default:
                     //TODO: Log Error
-                    Console.WriteLine($"No such browser {driverType}");
+                    Console.WriteLine($"No such browser: {driverType}");
                     throw new ArgumentException("Invalid browser name argument!");
             }
         }
