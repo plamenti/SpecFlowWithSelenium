@@ -1,9 +1,5 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumTaskAmazon.Helpers;
 using SeleniumTaskAmazon.Pages;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SeleniumTaskAmazon.StepDefinitions
