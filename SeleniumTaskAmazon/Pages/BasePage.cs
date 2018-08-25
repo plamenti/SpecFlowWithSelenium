@@ -146,7 +146,7 @@ namespace SeleniumTaskAmazon.Pages
         {
             try
             {
-                wait.Until(d => d.FindElement(by).Displayed);
+                wait.Until(d => d.FindElement(by).Enabled);
                 IWebElement select = driver.FindElement(by);
                 var selectElement = new SelectElement(select);
                 selectElement.SelectByText(elementTextValue);
@@ -154,17 +154,17 @@ namespace SeleniumTaskAmazon.Pages
             catch (NoSuchElementException ex)
             {
                 //TODO: Log Error
-                Assert.True(false, "NoSuchElementException - Failed to send text to element!");
+                Assert.True(false, "NoSuchElementException - Failed to find select element!");
             }
             catch (WebDriverTimeoutException ex)
             {
                 //TODO: Log Error
-                Assert.True(false, "WebDriverTimeoutException - Failed to send text to element!");
+                Assert.True(false, "WebDriverTimeoutException - Failed to find select element!");
             }
             catch (StaleElementReferenceException ex)
             {
                 // find element again and retry
-                wait.Until(d => d.FindElement(by).Displayed);
+                wait.Until(d => d.FindElement(by).Enabled);
                 IWebElement select = driver.FindElement(by);
                 var selectElement = new SelectElement(select);
                 selectElement.SelectByText(elementTextValue);

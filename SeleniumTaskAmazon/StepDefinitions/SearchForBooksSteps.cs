@@ -11,7 +11,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         [When(@"I select category (.*)")]
         public void SelectCategory(string category)
         {
-            ScenarioContext.Current.Pending();
+            page.SelectCategory(category);
         }
 
         [When(@"Search for book with title (.*)")]
