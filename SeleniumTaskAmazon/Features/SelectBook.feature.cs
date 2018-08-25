@@ -125,7 +125,7 @@ this.FeatureBackground();
                         "Paperback",
                         "4.00"});
 #line 17
- testRunner.Then("First item has following attributes", ((string)(null)), table1, "Then ");
+ testRunner.Then("First found item has following attributes", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
