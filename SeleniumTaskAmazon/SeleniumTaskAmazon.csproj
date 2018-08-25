@@ -72,10 +72,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\SelectBook.feature.cs">
+    <Compile Include="Features\SearchAndSelectBook.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SelectBook.feature</DependentUpon>
+      <DependentUpon>SearchAndSelectBook.feature</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DriverManager.cs" />
     <Compile Include="Helpers\WaitManager.cs" />
@@ -88,9 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\SelectBook.feature">
+    <None Include="Features\SearchAndSelectBook.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SelectBook.feature.cs</LastGenOutput>
+      <LastGenOutput>SearchAndSelectBook.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
