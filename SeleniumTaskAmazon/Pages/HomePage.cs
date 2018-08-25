@@ -1,38 +1,63 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
+using System.Configuration;
 
 namespace SeleniumTaskAmazon.Pages
 {
     public class HomePage : BasePage
     {
-        private const string Title = "Amazon.co.uk: Low Prices in Electronics, Books, Sports Equipment & more";
-        private const string expectedUrl = "amazon.co.uk";
-        private By footer = By.Id("navFooter");
+        private readonly string baseUrl = ConfigurationManager.AppSettings.Get("url");
+          
         private By logo = By.Id("nav-logo");
+        private By cart = By.Id("nav-cart-count");
+        private By footer = By.Id("navFooter");
         private By searchButton = By.XPath("//input[@value='Go']");
         private By searchField = By.Id("twotabsearchtextbox");
         private By searchDropdown = By.Id("searchDropdownBox");
-        private By cart = By.Id("nav-cart-count");
+        private By helloGreeting = By.XPath("//a[@id='nav-link-yourAccount']/span[@class='nav-line-1']");
 
-
-        public HomePage(IWebDriver driver) : base(driver)
+        public HomePage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver, wait)
         {
+        }
+
+        public string getTitle()
+        {
+            return driver.Title;
+        }
+
+        public string getCurrentUrl()
+        {
+            return driver.Url;
+        }
+
+        public bool isLoggedInAs(string username)
+        {
+            string greetingLabel = GetElementText(helloGreeting);
+            return greetingLabel.Contains(username);
+        }
+
+
+        public bool canSearch()
+        {
+            bool isSearchFieldVisible = CheckElementIsVisible(searchField);
+            bool issearchButtonVisible = CheckElementIsVisible(searchButton);
+
+            return isSearchFieldVisible && issearchButtonVisible;
+        }
+
+        public override void NavigateTo()
+        {
+            driver.Navigate().GoToUrl(baseUrl);
         }
 
         public override bool IsAt()
         {
-            bool isUrlCorrect = Driver.Url.Contains(expectedUrl);
-            bool isTitleCorrect = Driver.Title == Title;
             bool isLogoVisible = CheckElementIsVisible(logo);
             bool isCartVisible = CheckElementIsVisible(cart);
             bool isFooterVisible = CheckElementIsVisible(footer);
 
-            return isUrlCorrect && isTitleCorrect && isLogoVisible && isCartVisible && isFooterVisible;
-        }
-
-        public void NavigateTo()
-        {
-            NavigateTo("/");
+            return isLogoVisible && isCartVisible && isFooterVisible;
         }
     }
 }
