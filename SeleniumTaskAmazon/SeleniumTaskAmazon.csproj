@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Helpers\DriverManager.cs" />
     <Compile Include="Helpers\WaitManager.cs" />
+    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
-    <Folder Include="Pages\" />
     <Folder Include="StepDefinitions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

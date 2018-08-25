@@ -13,14 +13,20 @@ namespace SeleniumTaskAmazon.Helpers
         public static IWebDriver GetDriver()
         {
             string driverType = ConfigurationManager.AppSettings.Get("driver").ToLower();
-
+            IWebDriver driver;
             //TODO: Log steps
             switch (driverType)
             {
                 case "chrome":
-                    return new ChromeDriver();
+                    driver = new ChromeDriver();
+                    setupDriverProperties(driver);
+                    return driver;
+
                 case "firefox":
-                    return new FirefoxDriver();
+                    driver = new FirefoxDriver();
+                    setupDriverProperties(driver);
+                    return driver;
+
                 case "ie":
                     var options = new InternetExplorerOptions
                     {
@@ -29,14 +35,25 @@ namespace SeleniumTaskAmazon.Helpers
                         EnableNativeEvents = false
                     };
 
-                    return new InternetExplorerDriver(options);
+                    driver = new InternetExplorerDriver(options);
+                    setupDriverProperties(driver);
+                    return driver;
+
                 case "edge":
-                    return new EdgeDriver();
+                    driver = new EdgeDriver();
+                    setupDriverProperties(driver);
+                    return driver;
+
                 default:
                     //TODO: Log Error
                     Console.WriteLine($"No such browser: {driverType}");
                     throw new ArgumentException("Invalid browser name argument!");
             }
+        }
+
+        private static void setupDriverProperties(IWebDriver driver)
+        {
+            driver.Manage().Window.Maximize();
         }
     }
 }
