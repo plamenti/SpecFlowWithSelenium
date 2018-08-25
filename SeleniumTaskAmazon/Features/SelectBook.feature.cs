@@ -70,22 +70,62 @@ namespace SeleniumTaskAmazon.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line 7
+ testRunner.Given("I navigate to Amazon book store in UK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.And("I am not logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Navigate to Amazon book store in UK")]
         public virtual void NavigateToAmazonBookStoreInUK()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to Amazon book store in UK", null, ((string[])(null)));
-#line 6
+#line 10
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 7
- testRunner.Given("I navigate to Amazon book store in UK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
- testRunner.And("I am not logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
+#line 6
+this.FeatureBackground();
+#line 11
  testRunner.Then("The correct page is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 10
+#line 12
  testRunner.And("I can start to search for books", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Search for book")]
+        [NUnit.Framework.TestCaseAttribute("Harry Potter and the Cursed Child", null)]
+        public virtual void SearchForBook(string title, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search for book", null, exampleTags);
+#line 14
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 6
+this.FeatureBackground();
+#line 15
+ testRunner.When("I select section books", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.And(string.Format("Search for book with title {0}", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "title",
+                        "badge",
+                        "type",
+                        "price"});
+            table1.AddRow(new string[] {
+                        "Harry Potter and the Cursed Child",
+                        "prime",
+                        "Paperback",
+                        "4.00"});
+#line 17
+ testRunner.Then("First item has following attributes", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
