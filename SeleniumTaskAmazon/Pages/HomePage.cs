@@ -37,7 +37,6 @@ namespace SeleniumTaskAmazon.Pages
             return greetingLabel.Contains(username);
         }
 
-
         public bool CanSearch()
         {
             bool isSearchFieldVisible = CheckElementIsVisible(searchField);
@@ -54,6 +53,12 @@ namespace SeleniumTaskAmazon.Pages
         public void SelectCategory(string category)
         {
             SelectElementFromDrodownByText(searchDropdown, category);
+        }
+
+        public void SearchForItem(string item)
+        {
+            SendKeys(searchField, item);
+            Click(searchButton);
         }
 
         public override bool IsAt()

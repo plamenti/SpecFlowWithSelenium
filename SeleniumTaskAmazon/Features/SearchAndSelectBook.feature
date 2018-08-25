@@ -13,7 +13,7 @@ Scenario: Navigate to Amazon book store in UK
 
 Scenario: Search for book
 	When I select category Books
-	And Search for book with title <title>
+	And Search for book with title Harry Potter and the Cursed Child
 	Then First found item has following attributes
 	| title                             | badge | type      | price |
 	| Harry Potter and the Cursed Child | prime | Paperback | 4.00  |

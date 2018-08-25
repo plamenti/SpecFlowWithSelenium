@@ -17,7 +17,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         [When(@"Search for book with title (.*)")]
         public void SearchForBookByTitle(string title)
         {
-            ScenarioContext.Current.Pending();
+            page.SearchForItem(title);
         }
 
         [Then(@"First found item has following attributes")]
