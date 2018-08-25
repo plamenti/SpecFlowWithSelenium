@@ -37,7 +37,7 @@ namespace SeleniumTaskAmazon.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SelectBook", "\tIn order to buy a book from Amazon.co.uk silly mistakes\r\n\tAs a not registered cl" +
-                    "ient\r\n\tI want to select a book and add it to cart", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "ient\r\n\tI want to find a book and add it to cart", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,7 +1,7 @@
 ﻿Feature: SelectBook
 	In order to buy a book from Amazon.co.uk silly mistakes
 	As a not registered client
-	I want to select a book and add it to cart
+	I want to find a book and add it to cart
 
 Scenario: Navigate to Amazon book store in UK
 	Given I navigate to Amazon book store in UK
