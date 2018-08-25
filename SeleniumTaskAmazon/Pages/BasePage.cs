@@ -41,7 +41,7 @@ namespace SeleniumTaskAmazon.Pages
 
         public abstract bool IsAt();
 
-        public virtual void NavigateTo(string url)
+        public void NavigateTo(string url)
         {
             Driver.Navigate().GoToUrl(BaseUrl + url);
         }
