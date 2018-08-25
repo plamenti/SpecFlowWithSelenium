@@ -79,6 +79,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\SelectBook.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SelectBook.feature</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\DriverManager.cs" />
     <Compile Include="Helpers\WaitManager.cs" />
     <Compile Include="Pages\BasePage.cs" />
@@ -87,10 +92,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\SelectBook.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SelectBook.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
     <Folder Include="StepDefinitions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
