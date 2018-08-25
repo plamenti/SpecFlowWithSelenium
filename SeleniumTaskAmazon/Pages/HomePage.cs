@@ -51,6 +51,11 @@ namespace SeleniumTaskAmazon.Pages
             driver.Navigate().GoToUrl(BaseUrl);
         }
 
+        public void SelectCategory(string category)
+        {
+            SelectElementFromDrodownByText(searchDropdown, category);
+        }
+
         public override bool IsAt()
         {
             bool isLogoVisible = CheckElementIsVisible(logo);
