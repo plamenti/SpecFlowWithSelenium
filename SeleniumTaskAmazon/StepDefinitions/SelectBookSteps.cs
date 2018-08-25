@@ -11,14 +11,11 @@ namespace SeleniumTaskAmazon.StepDefinitions
     [Binding]
     public class SelectBookSteps
     {
-        private HomePage page;
-        private IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>();
-        private IWait<IWebDriver> wait = ScenarioContext.Current.Get<IWait<IWebDriver>>();
+        private HomePage page = ScenarioContext.Current.Get<HomePage>();
 
         [Given(@"I navigate to Amazon book store in UK")]
         public void NavigateToStore()
         {
-            page = new HomePage(driver, wait);
             page.NavigateTo();
         }
 
