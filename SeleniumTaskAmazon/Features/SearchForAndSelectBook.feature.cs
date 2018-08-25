@@ -18,20 +18,20 @@ namespace SeleniumTaskAmazon.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("SelectBook")]
-    public partial class SelectBookFeature
+    [NUnit.Framework.DescriptionAttribute("SearchForAndSelectBook")]
+    public partial class SearchForAndSelectBookFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SearchAndSelectBook.feature"
+#line 1 "SearchForAndSelectBook.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SelectBook", "\tIn order to buy a book from Amazon.co.uk silly mistakes\r\n\tAs a not registered cl" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SearchForAndSelectBook", "\tIn order to buy a book from Amazon.co.uk silly mistakes\r\n\tAs a not registered cl" +
                     "ient\r\n\tI want to find a book and add it to cart", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -120,7 +120,7 @@ this.FeatureBackground();
                         "price"});
             table1.AddRow(new string[] {
                         "Harry Potter and the Cursed Child",
-                        "prime",
+                        "true",
                         "Paperback",
                         "4.00"});
 #line 17

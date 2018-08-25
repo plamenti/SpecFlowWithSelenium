@@ -1,4 +1,4 @@
-﻿Feature: SelectBook
+﻿Feature: SearchForAndSelectBook
 	In order to buy a book from Amazon.co.uk silly mistakes
 	As a not registered client
 	I want to find a book and add it to cart
@@ -15,5 +15,5 @@ Scenario: Search for book
 	When I select category Books
 	And Search for book with title Harry Potter and the Cursed Child
 	Then First found item has following attributes
-	| title                             | badge | type      | price |
-	| Harry Potter and the Cursed Child | prime | Paperback | 4.00  |
+	| title                             | badge | type | price |
+	| Harry Potter and the Cursed Child | true | Paperback | 4.00  |
