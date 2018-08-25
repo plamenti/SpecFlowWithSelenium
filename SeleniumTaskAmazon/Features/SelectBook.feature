@@ -5,5 +5,6 @@
 
 Scenario: Navigate to Amazon book store in UK
 	Given I navigate to Amazon book store in UK
+	And I am not logged in
 	Then The correct page is open
 	And I can start to search for books
