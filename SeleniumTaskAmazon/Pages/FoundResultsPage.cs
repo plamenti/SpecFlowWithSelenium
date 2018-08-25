@@ -11,8 +11,8 @@ namespace SeleniumTaskAmazon.Pages
     {
         private By resultsContainer = By.Id("s-results-list-atf");
         private By allResults = By.XPath("//li[contains(@id, 'result_')]");
-        private By foundElementTitle = By.TagName("h2"); // By.XPath("//h2");
-        private By foundElementFormat = By.TagName("h3"); // By.XPath("//h2");
+        private By foundElementTitle = By.TagName("h2");
+        private By foundElementFormat = By.TagName("h3");
         private By foundElementPrice = By.XPath("//span[contains(@class, 'a-color-price')]");
         private By foundElementKindleBadge = By.XPath("//span[contains(@class, 's-icon-kindle-unlimited')]");
         private By foundElementPrimeBadge = By.XPath("//i[contains(@class, 'a-icon-prime')]");

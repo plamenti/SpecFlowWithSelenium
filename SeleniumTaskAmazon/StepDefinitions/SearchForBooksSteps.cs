@@ -1,5 +1,7 @@
-﻿using SeleniumTaskAmazon.Models;
+﻿using NUnit.Framework;
+using SeleniumTaskAmazon.Models;
 using SeleniumTaskAmazon.Pages;
+using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -8,26 +10,41 @@ namespace SeleniumTaskAmazon.StepDefinitions
     [Binding]
     public class SearchForBooksSteps
     {
-        private HomePage page = ScenarioContext.Current.Get<HomePage>();
+        private HomePage homePage = ScenarioContext.Current.Get<HomePage>();
+        private FoundResultsPage foundReusultsPage = ScenarioContext.Current.Get<FoundResultsPage>();
         private Book expectedBook;
+        private Book actualBook;
 
         [When(@"I select category (.*)")]
         public void SelectCategory(string category)
         {
-            page.SelectCategory(category);
+            homePage.SelectCategory(category);
         }
 
         [When(@"Search for book with title (.*)")]
         public void SearchForBookByTitle(string title)
         {
-            page.SearchForItem(title);
+            homePage.SearchForItem(title);
         }
 
         [Then(@"First found item has following attributes")]
         public void VerifyFirstItem(Table table)
         {
             expectedBook = table.CreateInstance<Book>();
-            ScenarioContext.Current.Pending();
+            Format foundItemFormat;
+            Enum.TryParse(foundReusultsPage.GetFirstFoundElementFormat(), out foundItemFormat);
+            actualBook = new Book
+            {
+                Title = foundReusultsPage.GetFirstFoundElementTitle(),
+                Price = foundReusultsPage.GetFirstFoundElementPrice(),
+                Badge = foundReusultsPage.GetFirstFoundElementBadge(),
+                Format = foundItemFormat
+            };
+
+            Assert.IsTrue(actualBook.Title.Contains(expectedBook.Title), "Title is not equal");
+            Assert.IsTrue(actualBook.Badge == expectedBook.Badge, "Badge is not equal");
+            Assert.IsTrue(actualBook.Format == expectedBook.Format, "Format is not equal");
+            Assert.IsTrue(actualBook.Price == expectedBook.Price, "Price is not equal");
         }
 
     }
