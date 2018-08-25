@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumTaskAmazon.Helpers;
 using System;
+using System.Configuration;
 using Xunit;
 
 namespace SeleniumTaskAmazon.Pages
@@ -10,11 +11,13 @@ namespace SeleniumTaskAmazon.Pages
     {
         private IWebDriver driver;
         private IWait<IWebDriver> wait;
+        private readonly string BaseUrl;
 
         public BasePage(IWebDriver driver)
         {
             this.Driver = driver;
             this.wait = WaitManager.GetDefaultWait(this.driver);
+            BaseUrl = ConfigurationManager.AppSettings.Get("url");
         }
 
         public IWebDriver Driver
@@ -37,6 +40,11 @@ namespace SeleniumTaskAmazon.Pages
 
 
         public abstract bool IsAt();
+
+        public virtual void NavigateTo(string url)
+        {
+            Driver.Navigate().GoToUrl(BaseUrl + url);
+        }
         
         public void SendKeys(By by, string valueToType)
         {
