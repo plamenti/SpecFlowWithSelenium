@@ -16,21 +16,21 @@ namespace SeleniumTaskAmazon.StepDefinitions
         private IWait<IWebDriver> wait = ScenarioContext.Current.Get<IWait<IWebDriver>>();
 
         [Given(@"I navigate to Amazon book store in UK")]
-        public void GivenINavigateToAmazonBookStoreInUK()
+        public void NavigateToStore()
         {
             page = new HomePage(driver, wait);
             page.NavigateTo();
         }
 
         [Given(@"I am not logged in")]
-        public void GivenIAmNotLoggedIn()
+        public void VerifyIAmNotLoggedIn()
         {
             string greetingLabelName = "Sign in";
             Assert.True(page.isLoggedInAs(greetingLabelName), $"Greeting label should contain: {greetingLabelName}");
         }
 
         [Then(@"The correct page is open")]
-        public void ThenTheCorrectPageIsOpen()
+        public void VerifyCorrectPageIsOpen()
         {
             string expectedUrl = @"https://www.amazon.co.uk/";
             string expectedTitle = "Amazon.co.uk: Low Prices in Electronics, Books, Sports Equipment & more";
@@ -41,7 +41,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         }
 
         [Then(@"I can start to search for books")]
-        public void ThenICanStartToSearchForBooks()
+        public void VerifyCanStartToSearchForBooks()
         {
             Assert.True(page.canSearch());
         }
