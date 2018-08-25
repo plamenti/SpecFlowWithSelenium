@@ -49,7 +49,7 @@ namespace SeleniumTaskAmazon.Helpers
                     Console.WriteLine($"No such browser: {driverType}");
                     throw new ArgumentException("Invalid browser name argument!");
             }
-        }
+        } 
 
         private static void setupDriverProperties(IWebDriver driver)
         {

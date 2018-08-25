@@ -1,58 +1,31 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumTaskAmazon.Helpers;
-using System;
-using System.Configuration;
-using Xunit;
 
 namespace SeleniumTaskAmazon.Pages
 {
     public abstract class BasePage
     {
-        private IWebDriver driver;
         private IWait<IWebDriver> wait;
-        private readonly string BaseUrl;
+        protected IWebDriver driver;
 
-        public BasePage(IWebDriver driver)
+        public BasePage(IWebDriver driver, IWait<IWebDriver> wait)
         {
-            this.Driver = driver;
-            this.wait = WaitManager.GetDefaultWait(this.driver);
-            BaseUrl = ConfigurationManager.AppSettings.Get("url");
+            this.driver = driver;
+            this.wait = wait;
         }
-
-        public IWebDriver Driver
-        {
-            get { return this.driver; }
-            private set
-            {
-                if (value == null)
-                {
-                    //TODO: Log Error
-                    throw new ArgumentNullException("Driver can not be null!");
-                }
-            }
-        }
-
-        public IWait<IWebDriver> Wait
-        {
-            get { return this.wait; }
-        }
-
 
         public abstract bool IsAt();
 
-        public void NavigateTo(string url)
-        {
-            Driver.Navigate().GoToUrl(BaseUrl + url);
-        }
+        public abstract void NavigateTo();
         
         public void SendKeys(By by, string valueToType)
         {
             try
             {
-                Wait.Until(d => d.FindElement(by).Displayed);
-                Driver.FindElement(by).Clear();
-                Driver.FindElement(by).SendKeys(valueToType);
+                wait.Until(d => d.FindElement(by).Displayed);
+                driver.FindElement(by).Clear();
+                driver.FindElement(by).SendKeys(valueToType);
             }
             catch (NoSuchElementException ex)
             {
@@ -67,9 +40,9 @@ namespace SeleniumTaskAmazon.Pages
             catch (StaleElementReferenceException ex)
             {
                 // find element again and retry
-                Wait.Until(d => d.FindElement(by).Displayed);
-                Driver.FindElement(by).Clear();
-                Driver.FindElement(by).SendKeys(valueToType);
+                wait.Until(d => d.FindElement(by).Displayed);
+                driver.FindElement(by).Clear();
+                driver.FindElement(by).SendKeys(valueToType);
             }
         }
         
@@ -77,8 +50,8 @@ namespace SeleniumTaskAmazon.Pages
         {
             try
             {
-                Wait.Until(d => d.FindElement(by).Displayed);
-                Driver.FindElement(by).Click();
+                wait.Until(d => d.FindElement(by).Displayed);
+                driver.FindElement(by).Click();
             }
             catch (NoSuchElementException ex)
             {
@@ -93,8 +66,8 @@ namespace SeleniumTaskAmazon.Pages
             catch (StaleElementReferenceException ex)
             {
                 // find element again and retry
-                Wait.Until(d => d.FindElement(by).Displayed);
-                Driver.FindElement(by).Click();
+                wait.Until(d => d.FindElement(by).Displayed);
+                driver.FindElement(by).Click();
             }
         }
         
@@ -102,7 +75,7 @@ namespace SeleniumTaskAmazon.Pages
         {
             try
             {
-                Wait.Until(d => d.FindElement(by).Displayed);
+                wait.Until(d => d.FindElement(by).Displayed);
             }
             catch (NoSuchElementException ex)
             {
@@ -117,7 +90,7 @@ namespace SeleniumTaskAmazon.Pages
             catch (StaleElementReferenceException ex)
             {
                 // find element again and retry
-                Wait.Until(d => d.FindElement(by).Displayed);
+                wait.Until(d => d.FindElement(by).Displayed);
             }
 
             return true;
@@ -129,8 +102,8 @@ namespace SeleniumTaskAmazon.Pages
 
             try
             {
-                Wait.Until(d => d.FindElement(by).Displayed);
-                returnValue = Driver.FindElement(by).Text;
+                wait.Until(d => d.FindElement(by).Displayed);
+                returnValue = driver.FindElement(by).Text;
             }
             catch (NoSuchElementException ex)
             {
@@ -152,8 +125,8 @@ namespace SeleniumTaskAmazon.Pages
 
             try
             {
-                Wait.Until(d => d.FindElement(by).Displayed);
-                returnValue = Driver.FindElement(by).GetAttribute(attribute);
+                wait.Until(d => d.FindElement(by).Displayed);
+                returnValue = driver.FindElement(by).GetAttribute(attribute);
             }
             catch (NoSuchElementException ex)
             {
@@ -168,17 +141,5 @@ namespace SeleniumTaskAmazon.Pages
 
             return returnValue;
         }
-
-        public void Dispose()
-        {
-            if(Driver != null)
-            {
-                Driver.Close();
-                Driver.Quit();
-                Driver.Dispose();
-            }
-        }
-
-
     }
 }
