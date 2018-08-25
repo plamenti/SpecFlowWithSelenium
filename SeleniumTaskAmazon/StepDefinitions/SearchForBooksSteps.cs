@@ -5,8 +5,8 @@ namespace SeleniumTaskAmazon.StepDefinitions
     [Binding]
     public class SearchForBooksSteps
     {
-        [When(@"I select section (.*)")]
-        public void SelectSection(string section)
+        [When(@"I select category (.*)")]
+        public void SelectCategory(string category)
         {
             ScenarioContext.Current.Pending();
         }

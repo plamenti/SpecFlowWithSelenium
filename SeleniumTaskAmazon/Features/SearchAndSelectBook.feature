@@ -11,13 +11,9 @@ Scenario: Navigate to Amazon book store in UK
 	Then The correct page is open
 	And I can start to search for books
 
-Scenario Outline: Search for book
-	When I select section books
+Scenario: Search for book
+	When I select category Books
 	And Search for book with title <title>
 	Then First found item has following attributes
 	| title                             | badge | type      | price |
 	| Harry Potter and the Cursed Child | prime | Paperback | 4.00  |
-
-Examples: 
-	| title                             |
-	| Harry Potter and the Cursed Child |

@@ -7,7 +7,7 @@ namespace SeleniumTaskAmazon.Pages
 {
     public class HomePage : BasePage
     {
-        private readonly string baseUrl = ConfigurationManager.AppSettings.Get("url");
+        private readonly string BaseUrl = ConfigurationManager.AppSettings.Get("url");
           
         private By logo = By.Id("nav-logo");
         private By cart = By.Id("nav-cart-count");
@@ -21,24 +21,24 @@ namespace SeleniumTaskAmazon.Pages
         {
         }
 
-        public string getTitle()
+        public string GetTitle()
         {
             return driver.Title;
         }
 
-        public string getCurrentUrl()
+        public string GetCurrentUrl()
         {
             return driver.Url;
         }
 
-        public bool isLoggedInAs(string username)
+        public bool IsLoggedInAs(string username)
         {
             string greetingLabel = GetElementText(helloGreeting);
             return greetingLabel.Contains(username);
         }
 
 
-        public bool canSearch()
+        public bool CanSearch()
         {
             bool isSearchFieldVisible = CheckElementIsVisible(searchField);
             bool issearchButtonVisible = CheckElementIsVisible(searchButton);
@@ -48,7 +48,7 @@ namespace SeleniumTaskAmazon.Pages
 
         public override void NavigateTo()
         {
-            driver.Navigate().GoToUrl(baseUrl);
+            driver.Navigate().GoToUrl(BaseUrl);
         }
 
         public override bool IsAt()

@@ -26,7 +26,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         public void VerifyIAmNotLoggedIn()
         {
             string greetingLabelName = "Sign in";
-            Assert.True(page.isLoggedInAs(greetingLabelName), $"Greeting label should contain: {greetingLabelName}");
+            Assert.True(page.IsLoggedInAs(greetingLabelName), $"Greeting label should contain: {greetingLabelName}");
         }
 
         [Then(@"The correct page is open")]
@@ -35,15 +35,15 @@ namespace SeleniumTaskAmazon.StepDefinitions
             string expectedUrl = @"https://www.amazon.co.uk/";
             string expectedTitle = "Amazon.co.uk: Low Prices in Electronics, Books, Sports Equipment & more";
 
-            Assert.AreEqual(expectedUrl, page.getCurrentUrl());
-            Assert.AreEqual(expectedTitle, page.getTitle());
+            Assert.AreEqual(expectedUrl, page.GetCurrentUrl());
+            Assert.AreEqual(expectedTitle, page.GetTitle());
             Assert.True(page.IsAt());
         }
 
         [Then(@"I can start to search for books")]
         public void VerifyCanStartToSearchForBooks()
         {
-            Assert.True(page.canSearch());
+            Assert.True(page.CanSearch());
         }
     }
 }
