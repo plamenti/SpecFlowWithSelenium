@@ -141,5 +141,34 @@ namespace SeleniumTaskAmazon.Pages
 
             return returnValue;
         }
+
+        public void SelectElementFromDrodownByText(By by, string elementTextValue)
+        {
+            try
+            {
+                wait.Until(d => d.FindElement(by).Displayed);
+                IWebElement select = driver.FindElement(by);
+                var selectElement = new SelectElement(select);
+                selectElement.SelectByText(elementTextValue);
+            }
+            catch (NoSuchElementException ex)
+            {
+                //TODO: Log Error
+                Assert.True(false, "NoSuchElementException - Failed to send text to element!");
+            }
+            catch (WebDriverTimeoutException ex)
+            {
+                //TODO: Log Error
+                Assert.True(false, "WebDriverTimeoutException - Failed to send text to element!");
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                // find element again and retry
+                wait.Until(d => d.FindElement(by).Displayed);
+                IWebElement select = driver.FindElement(by);
+                var selectElement = new SelectElement(select);
+                selectElement.SelectByText(elementTextValue);
+            }
+        }
     }
 }
