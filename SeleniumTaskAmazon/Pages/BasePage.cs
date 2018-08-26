@@ -132,13 +132,11 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
-                Assert.True(false, "NoSuchElementException!");
+                return false;
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
-                Assert.True(false, "WebDriverTimeoutException - Failed to verify if element is visible!");
+                return false;
             }
             catch (StaleElementReferenceException ex)
             {
