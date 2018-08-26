@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
+using SeleniumTaskAmazon.Helpers;
 using SeleniumTaskAmazon.Pages;
 using TechTalk.SpecFlow;
 
@@ -8,6 +10,8 @@ namespace SeleniumTaskAmazon.StepDefinitions
     public class SelectBookSteps
     {
         private HomePage page = ScenarioContext.Current.Get<HomePage>();
+        private IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>();
+        private ExtentTest extentTest = ScenarioContext.Current.Get<ExtentTest>();
 
         [Given(@"I navigate to Amazon book store in UK")]
         public void NavigateToStore()
@@ -19,7 +23,8 @@ namespace SeleniumTaskAmazon.StepDefinitions
         public void VerifyIAmNotLoggedIn()
         {
             string greetingLabelName = "Sign in";
-            Assert.True(page.IsLoggedInAs(greetingLabelName), $"Greeting label should contain: {greetingLabelName}");
+
+            AssertionsManager.IsTrue(driver, extentTest, page.IsLoggedInAs(greetingLabelName), $"Greeting label: {greetingLabelName}");
         }
 
         [Then(@"The correct page is open")]
@@ -28,15 +33,15 @@ namespace SeleniumTaskAmazon.StepDefinitions
             string expectedUrl = @"https://www.amazon.co.uk/";
             string expectedTitle = "Amazon.co.uk: Low Prices in Electronics, Books, Sports Equipment & more";
 
-            Assert.AreEqual(expectedUrl, page.GetCurrentUrl());
-            Assert.AreEqual(expectedTitle, page.GetTitle());
-            Assert.True(page.IsAt(), "Book store page is not operational");
+            AssertionsManager.AreEqual(driver, extentTest, expectedUrl, page.GetCurrentUrl(), $"Page url: {page.GetCurrentUrl()}");
+            AssertionsManager.AreEqual(driver, extentTest, expectedTitle, page.GetTitle(), $"Page title: {page.GetTitle()}");
+            AssertionsManager.IsTrue(driver, extentTest, page.IsAt(), $"Book store page is operational: {page.IsAt().ToString()}");
         }
 
         [Then(@"I can start to search for books")]
         public void VerifyCanStartToSearchForBooks()
         {
-            Assert.True(page.CanSearch());
+            AssertionsManager.IsTrue(driver, extentTest, page.CanSearch(), $"Can start to search: {page.CanSearch().ToString()}");
         }
     }
 }
