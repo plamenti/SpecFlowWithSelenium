@@ -24,5 +24,5 @@ Scenario: Check book details
 	And Navigate to 1st found book details
 	Then The book has following attributes
 	| title                             | badge | type | price |
-	| Harry Potter and the Cursed Child | true | Paperback | 5.99  |
+	| Harry Potter and the Cursed Child | false | Paperback | 5.99  |
 

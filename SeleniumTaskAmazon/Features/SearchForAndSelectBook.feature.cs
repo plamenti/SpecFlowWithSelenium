@@ -153,7 +153,7 @@ this.FeatureBackground();
                         "price"});
             table2.AddRow(new string[] {
                         "Harry Potter and the Cursed Child",
-                        "true",
+                        "false",
                         "Paperback",
                         "5.99"});
 #line 25
