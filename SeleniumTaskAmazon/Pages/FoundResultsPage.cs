@@ -21,7 +21,7 @@ namespace SeleniumTaskAmazon.Pages
         {
         }
 
-        public ReadOnlyCollection<IWebElement> FoundResults => driver.FindElements(allResults);
+        public ReadOnlyCollection<IWebElement> FoundResults => GetElements(allResults);// driver.FindElements(allResults);
 
         public IWebElement FirstResult => FoundResults.ElementAtOrDefault(0);// .FirstOrDefault();
 
@@ -118,13 +118,6 @@ namespace SeleniumTaskAmazon.Pages
             bool isResultsContainerVisible = CheckElementIsVisible(resultsContainer);
 
             return isResultsContainerVisible && FoundResults.Count > 0;
-        }
-
-        private double ParcePrice(string foundPriceAsText)
-        {
-            string trimedPrice = foundPriceAsText.Trim(new char[] { '£' });
-
-            return double.Parse(trimedPrice);
         }
     }
 }
