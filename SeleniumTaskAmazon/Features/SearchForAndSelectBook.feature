@@ -16,4 +16,4 @@ Scenario: Search for book
 	And Search for book with title Harry Potter and the Cursed Child
 	Then First found item has following attributes
 	| title                             | badge | type | price |
-	| Harry Potter and the Cursed Child | true | Paperback | 4.00  |
+	| Harry Potter and the Cursed Child | true | Paperback | 5.99  |

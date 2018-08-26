@@ -122,7 +122,7 @@ this.FeatureBackground();
                         "Harry Potter and the Cursed Child",
                         "true",
                         "Paperback",
-                        "4.00"});
+                        "5.99"});
 #line 17
  testRunner.Then("First found item has following attributes", ((string)(null)), table1, "Then ");
 #line hidden
