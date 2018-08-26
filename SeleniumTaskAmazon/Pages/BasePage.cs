@@ -232,13 +232,6 @@ namespace SeleniumTaskAmazon.Pages
             action.MoveToElement(element).Perform();
         }
 
-        protected double ParcePrice(string foundPriceAsText)
-        {
-            string trimedPrice = foundPriceAsText.Trim(new char[] { '£' });
-
-            return double.Parse(trimedPrice);
-        }
-
         protected int GetFirstNumberOccurence(string text)
         {
             Regex regex = new Regex(@"\d+");
@@ -248,6 +241,20 @@ namespace SeleniumTaskAmazon.Pages
             if (match.Success)
             {
                 int.TryParse(match.Value, out result);
+            }
+
+            return result;
+        }
+
+        protected double ParcePrice(string text)
+        {
+            Regex regex = new Regex(@"[-+]?[0-9]*\.?[0-9]+");
+            Match match = regex.Match(text);
+            double result = -1.0;
+
+            if (match.Success)
+            {
+                double.TryParse(match.Value, out result);
             }
 
             return result;
