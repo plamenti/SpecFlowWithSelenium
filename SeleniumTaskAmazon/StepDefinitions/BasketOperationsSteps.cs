@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
+using SeleniumTaskAmazon.Helpers;
 using SeleniumTaskAmazon.Models;
 using SeleniumTaskAmazon.Pages;
 using TechTalk.SpecFlow;
@@ -10,6 +12,8 @@ namespace SeleniumTaskAmazon.StepDefinitions
     {
         private BookDetailsPage bookDetailsPage = ScenarioContext.Current.Get<BookDetailsPage>();
         private BasketPage basketPage = ScenarioContext.Current.Get<BasketPage>();
+        private IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>();
+        private ExtentTest extentTest = ScenarioContext.Current.Get<ExtentTest>();
 
         [When(@"Add book to the basket")]
         public void AddBookToTheBasket()
@@ -26,7 +30,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         [Then(@"The notification is shown")]
         public void VerifyNotificationIsShown()
         {
-            Assert.IsTrue(basketPage.IsAt(), "Notification Book is added to the basket is not operational");
+            AssertionsManager.IsTrue(driver, extentTest, basketPage.IsAt(), "Notification Book is added to the basket");
         }
 
         [Then(@"Notification title is (.*)")]
@@ -34,7 +38,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         {
             string actualTitle = basketPage.GetLabelTitle();
 
-            Assert.AreEqual(expectedTitle, actualTitle);
+            AssertionsManager.AreEqual(driver, extentTest, expectedTitle, actualTitle, $"Notification title is: {actualTitle}");
         }
 
         [Then(@"There is (.*) item in the basket")]
@@ -42,7 +46,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         {
             int actualItemsCount = basketPage.GetItemsCount();
 
-            Assert.AreEqual(expectedItemsCount, actualItemsCount);
+            AssertionsManager.AreEqual(driver, extentTest, expectedItemsCount, actualItemsCount, $"Items count in the basket is: {actualItemsCount}");
         }
 
         [Then(@"The book is the same as on the search page")]
@@ -51,15 +55,15 @@ namespace SeleniumTaskAmazon.StepDefinitions
             Book bookFromSearchPage = ScenarioContext.Current.Get<Book>();
             Book actualBook = basketPage.GetBook();
 
-            Assert.AreEqual(bookFromSearchPage.Title, actualBook.Title);
-            Assert.AreEqual(bookFromSearchPage.Format, actualBook.Format);
-            Assert.AreEqual(bookFromSearchPage.Price, actualBook.Price);
+            AssertionsManager.AreEqual(driver, extentTest, bookFromSearchPage.Title, actualBook.Title, $"Book title is: {actualBook.Title}");
+            AssertionsManager.AreEqual(driver, extentTest, bookFromSearchPage.Format, actualBook.Format, $"Book format is: {actualBook.Format.ToString()}");
+            AssertionsManager.AreEqual(driver, extentTest, bookFromSearchPage.Price, actualBook.Price, $"Book price is: {actualBook.Price}");
         }
 
         [Then(@"Quantity is (.*)")]
         public void ThenQuantityIs(int quantity)
         {
-            Assert.AreEqual(basketPage.GetQuantity(), quantity);
+            AssertionsManager.AreEqual(driver, extentTest, quantity, basketPage.GetQuantity(), $"Book quantity is: {basketPage.GetQuantity()}");
         }
 
         [Then(@"Total price is equal to quantity times book price")]
@@ -67,7 +71,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         {
             double expectedTotalPrice = basketPage.GetQuantity() * basketPage.GetProductPrice();
 
-            Assert.AreEqual(expectedTotalPrice, basketPage.GetTotalPrice());
+            AssertionsManager.AreEqual(driver, extentTest, expectedTotalPrice, basketPage.GetTotalPrice(), $"Total price is: {basketPage.GetTotalPrice()}");
         }
 
     }
