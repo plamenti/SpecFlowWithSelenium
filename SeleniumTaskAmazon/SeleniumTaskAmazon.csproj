@@ -109,7 +109,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchSelectEditBook.feature</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AssertionsManager.cs" />
     <Compile Include="Helpers\DriverManager.cs" />
+    <Compile Include="Helpers\IOManager.cs" />
+    <Compile Include="Helpers\ScreenShotsManager.cs" />
     <Compile Include="Helpers\WaitManager.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Format.cs" />
