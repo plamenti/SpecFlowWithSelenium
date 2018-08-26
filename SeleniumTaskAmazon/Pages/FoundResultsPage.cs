@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumTaskAmazon.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -81,6 +83,19 @@ namespace SeleniumTaskAmazon.Pages
 
 
             return foundKindleBadge || foundPrimeBadge;
+        }
+
+        public Book GetFirstFoundBook()
+        {
+            Format foundItemFormat;
+            Enum.TryParse(GetFirstFoundElementFormat(), out foundItemFormat);
+            return new Book
+            {
+                Title = GetFirstFoundElementTitle(),
+                Price = GetFirstFoundElementPrice(),
+                Badge = GetFirstFoundElementBadge(),
+                Format = foundItemFormat
+            };
         }
 
         public override bool IsAt()

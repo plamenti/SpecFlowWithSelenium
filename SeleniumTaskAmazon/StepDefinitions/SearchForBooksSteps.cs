@@ -31,20 +31,17 @@ namespace SeleniumTaskAmazon.StepDefinitions
         public void VerifyFirstItem(Table table)
         {
             expectedBook = table.CreateInstance<Book>();
-            Format foundItemFormat;
-            Enum.TryParse(foundReusultsPage.GetFirstFoundElementFormat(), out foundItemFormat);
-            actualBook = new Book
-            {
-                Title = foundReusultsPage.GetFirstFoundElementTitle(),
-                Price = foundReusultsPage.GetFirstFoundElementPrice(),
-                Badge = foundReusultsPage.GetFirstFoundElementBadge(),
-                Format = foundItemFormat
-            };
+            actualBook = foundReusultsPage.GetFirstFoundBook();
 
-            Assert.IsTrue(actualBook.Title.Contains(expectedBook.Title), "Title is not equal");
-            Assert.IsTrue(expectedBook.Badge == actualBook.Badge, "Badge is not equal");
-            Assert.IsTrue(expectedBook.Format == actualBook.Format, "Format is not equal");
-            Assert.IsTrue(expectedBook.Price == actualBook.Price, "Price is not equal");
+            VerifyBooksAreEquals(expectedBook, actualBook);
+        }
+
+        private void VerifyBooksAreEquals(Book expectedBook, Book actualBook)
+        {
+            Assert.IsTrue(actualBook.Title.Contains(expectedBook.Title), $"Actual Title: {actualBook.Title} does not contain: {expectedBook.Title}");
+            Assert.IsTrue(expectedBook.Badge == actualBook.Badge, $"Expected Badge: {expectedBook.Badge} but was: {actualBook.Badge}");
+            Assert.IsTrue(expectedBook.Format == actualBook.Format, $"Expected Format: {expectedBook.Format} but was: {actualBook.Format}");
+            Assert.IsTrue(expectedBook.Price == actualBook.Price, $"Expected Price: {expectedBook.Price} but was: {actualBook.Price}");
         }
 
     }
