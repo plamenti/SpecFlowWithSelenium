@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using OpenQA.Selenium;
+using SeleniumTaskAmazon.Helpers;
 using SeleniumTaskAmazon.Models;
 using SeleniumTaskAmazon.Pages;
-using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -13,6 +14,8 @@ namespace SeleniumTaskAmazon.StepDefinitions
         private HomePage homePage = ScenarioContext.Current.Get<HomePage>();
         private FoundResultsPage foundReusultsPage = ScenarioContext.Current.Get<FoundResultsPage>();
         private BookDetailsPage bookDetailsPage = ScenarioContext.Current.Get<BookDetailsPage>();
+        private IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>();
+        private ExtentTest extentTest = ScenarioContext.Current.Get<ExtentTest>();
         private Book expectedBook;
         private Book actualBook;
 
@@ -47,9 +50,8 @@ namespace SeleniumTaskAmazon.StepDefinitions
         [Then(@"I am on the book details page")]
         public void ThenIAmOnTheBookDetailsPage()
         {
-            Assert.IsTrue(bookDetailsPage.IsAt(), "Book details page is not operational");
+            AssertionsManager.IsTrue(driver, extentTest, bookDetailsPage.IsAt(), $"Book details page is operational: {bookDetailsPage.IsAt().ToString()}");
         }
-
 
         [Then(@"The book has following attributes")]
         public void VerifyBookBookDetails(Table table)
@@ -62,10 +64,10 @@ namespace SeleniumTaskAmazon.StepDefinitions
 
         private void VerifyBooksAreEquals(Book expectedBook, Book actualBook)
         {
-            Assert.IsTrue(actualBook.Title.Contains(expectedBook.Title), $"Actual Title: {actualBook.Title} does not contain: {expectedBook.Title}");
-            Assert.IsTrue(expectedBook.Badge == actualBook.Badge, $"Expected Badge: {expectedBook.Badge} but was: {actualBook.Badge}");
-            Assert.IsTrue(expectedBook.Format == actualBook.Format, $"Expected Format: {expectedBook.Format} but was: {actualBook.Format}");
-            Assert.IsTrue(expectedBook.Price == actualBook.Price, $"Expected Price: {expectedBook.Price} but was: {actualBook.Price}");
+            AssertionsManager.IsTrue(driver, extentTest, actualBook.Title.Contains(expectedBook.Title), $"Actual Title: {actualBook.Title} does contain: {expectedBook.Title}");
+            AssertionsManager.IsTrue(driver, extentTest, expectedBook.Badge == actualBook.Badge, $"Expected Badge: {expectedBook.Badge}, it was: {actualBook.Badge}");
+            AssertionsManager.IsTrue(driver, extentTest, expectedBook.Format == actualBook.Format, $"Expected Format: {expectedBook.Format}, it was: {actualBook.Format}");
+            AssertionsManager.IsTrue(driver, extentTest, expectedBook.Price == actualBook.Price, $"Expected Price: {expectedBook.Price}, it was: {actualBook.Price}");
         }
 
     }
