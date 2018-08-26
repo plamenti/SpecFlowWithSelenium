@@ -7,7 +7,7 @@ namespace SeleniumTaskAmazon.Pages
 {
     public class BookDetailsPage : BasePage
     {
-        private By tile = By.Id("productTitle");
+        private By title = By.Id("productTitle");
         private By badge = By.XPath("//div[contains(@id, 'Badge')]//i");
         private By price = By.XPath("//li[contains(@class,' selected')]//a[@role='button']/span[2]");
         private By format = By.XPath("//li[contains(@class,' selected')]//a[@role='button']/span[1]");
@@ -18,36 +18,20 @@ namespace SeleniumTaskAmazon.Pages
 
         public override bool IsAt()
         {
-            throw new NotImplementedException();
+            return CheckElementIsVisible(title) && CheckElementIsVisible(price);
         }
 
         public string GetTitle()
         {
-            return GetElementText(tile);
+            return GetElementText(title);
         }
 
         public bool GetBadge()
         {
-            bool foundBadge;
+            return CheckElementIsVisible(badge);
+        }
 
-            try
-            {
-                IWebElement badgeElement = GetElement(badge);
-                foundBadge = true;
-            }
-            catch (NoSuchElementException)
-            {
-                foundBadge = false;
-            }
-            catch (WebDriverTimeoutException)
-            {
-                foundBadge = false;
-            }
-
-            return foundBadge;
-    }
-
-    public string GetFormat()
+        public string GetFormat()
         {
             IWebElement foundElement = GetElement(format); ;
 
