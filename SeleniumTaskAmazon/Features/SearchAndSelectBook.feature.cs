@@ -24,7 +24,7 @@ namespace SeleniumTaskAmazon.Features
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SearchForAndSelectBook.feature"
+#line 1 "SearchAndSelectBook.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

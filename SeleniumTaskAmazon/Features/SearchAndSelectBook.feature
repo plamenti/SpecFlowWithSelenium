@@ -27,3 +27,4 @@ Scenario: Check book details
 	| title                             | badge | type | price |
 	| Harry Potter and the Cursed Child | false | Paperback | 5.99  |
 
+
