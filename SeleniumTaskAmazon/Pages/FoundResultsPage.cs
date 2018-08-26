@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -14,8 +12,8 @@ namespace SeleniumTaskAmazon.Pages
         private By foundElementTitle = By.TagName("h2");
         private By foundElementFormat = By.TagName("h3");
         private By foundElementPrice = By.XPath("//span[contains(@class, 'a-color-price')]");
-        private By foundElementKindleBadge = By.XPath("//span[contains(@class, 's-icon-kindle-unlimited')]");
-        private By foundElementPrimeBadge = By.XPath("//i[contains(@class, 'a-icon-prime')]");
+        private By foundElementKindleBadge = By.XPath("./parent::a/following-sibling::span[contains(@class, 's-icon-kindle-unlimited')]");
+        private By foundElementPrimeBadge = By.XPath("./parent::a/following-sibling::i[contains(@class, 'a-icon-prime')]");
 
         public FoundResultsPage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver, wait)
         {
@@ -41,7 +39,7 @@ namespace SeleniumTaskAmazon.Pages
 
         public double GetFirstFoundElementPrice()
         {
-            string foundPriceAsText = FirstResult.FindElements(foundElementPrice).First().Text;
+            string foundPriceAsText = driver.FindElements(foundElementPrice).First().Text;
             double price = ParcePrice(foundPriceAsText);
 
             return price;
@@ -55,28 +53,28 @@ namespace SeleniumTaskAmazon.Pages
 
             try
             {
-                IWebElement badge = FirstResult.FindElement(foundElementKindleBadge);
+                IWebElement badge = FirstResult.FindElements(foundElementPrice).First().FindElement(foundElementKindleBadge);
                 foundKindleBadge = true;
             }
-            catch (NoSuchElementException ex)
+            catch (NoSuchElementException)
             {
                 foundKindleBadge = false;
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
                 foundKindleBadge = false;
             }
 
             try
             {
-                IWebElement badge = FirstResult.FindElement(foundElementPrimeBadge);
+                IWebElement badge = FirstResult.FindElements(foundElementPrice).First().FindElement(foundElementPrimeBadge);
                 foundPrimeBadge = true;
             }
-            catch (NoSuchElementException ex)
+            catch (NoSuchElementException)
             {
                 foundPrimeBadge = false;
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
                 foundPrimeBadge = false;
             }
@@ -90,11 +88,6 @@ namespace SeleniumTaskAmazon.Pages
             bool isResultsContainerVisible = CheckElementIsVisible(resultsContainer);
 
             return isResultsContainerVisible && FoundResults.Count > 0;
-        }
-
-        public override void NavigateTo()
-        {
-            throw new NotImplementedException();
         }
 
         private double ParcePrice(string foundPriceAsText)
