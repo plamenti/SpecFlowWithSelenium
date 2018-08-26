@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace SeleniumTaskAmazon.Pages
 {
@@ -236,6 +237,20 @@ namespace SeleniumTaskAmazon.Pages
             string trimedPrice = foundPriceAsText.Trim(new char[] { '£' });
 
             return double.Parse(trimedPrice);
+        }
+
+        protected int GetFirstNumberOccurence(string text)
+        {
+            Regex regex = new Regex(@"\d+");
+            Match match = regex.Match(text);
+            int result = -1;
+
+            if (match.Success)
+            {
+                int.TryParse(match.Value, out result);
+            }
+
+            return result;
         }
     }
 }
