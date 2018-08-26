@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SeleniumTaskAmazon.Models;
 using SeleniumTaskAmazon.Pages;
 using TechTalk.SpecFlow;
 
@@ -44,28 +45,29 @@ namespace SeleniumTaskAmazon.StepDefinitions
             Assert.AreEqual(expectedItemsCount, actualItemsCount);
         }
 
-        [Then(@"The book is shown on the list")]
-        public void ThenTheBookIsShownOnTheList()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Then(@"The book is the same as on the search page")]
         public void ThenTheBookIsTheSameAsOnTheSearchPage()
         {
-            ScenarioContext.Current.Pending();
+            Book bookFromSearchPage = ScenarioContext.Current.Get<Book>();
+            Book actualBook = basketPage.GetBook();
+
+            Assert.AreEqual(bookFromSearchPage.Title, actualBook.Title);
+            Assert.AreEqual(bookFromSearchPage.Format, actualBook.Format);
+            Assert.AreEqual(bookFromSearchPage.Price, actualBook.Price);
         }
 
         [Then(@"Quantity is (.*)")]
-        public void ThenQuantityIs(int p0)
+        public void ThenQuantityIs(int quantity)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(basketPage.GetQuantity(), quantity);
         }
 
         [Then(@"Total price is equal to quantity times book price")]
         public void ThenTotalPriceIsEqualToQuantityTimesBookPrice()
         {
-            ScenarioContext.Current.Pending();
+            double expectedTotalPrice = basketPage.GetQuantity() * basketPage.GetProductPrice();
+
+            Assert.AreEqual(expectedTotalPrice, basketPage.GetTotalPrice());
         }
 
     }

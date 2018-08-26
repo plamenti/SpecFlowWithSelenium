@@ -87,7 +87,7 @@ namespace SeleniumTaskAmazon.Pages
             return format;
         }
 
-        public Book GetFoundBook(int position)
+        public Book GetBook()
         {
             Format foundItemFormat;
             Enum.TryParse(GetFormat(), out foundItemFormat);
