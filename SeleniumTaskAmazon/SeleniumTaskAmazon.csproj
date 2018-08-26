@@ -72,6 +72,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\SearchSelectEditBook.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchSelectEditBook.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\SearchAndSelectBook.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\SearchSelectEditBook.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SearchSelectEditBook.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\SearchAndSelectBook.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SearchAndSelectBook.feature.cs</LastGenOutput>
