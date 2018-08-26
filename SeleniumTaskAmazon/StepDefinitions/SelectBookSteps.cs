@@ -30,7 +30,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
 
             Assert.AreEqual(expectedUrl, page.GetCurrentUrl());
             Assert.AreEqual(expectedTitle, page.GetTitle());
-            Assert.True(page.IsAt());
+            Assert.True(page.IsAt(), "Book store page is not operational");
         }
 
         [Then(@"I can start to search for books")]

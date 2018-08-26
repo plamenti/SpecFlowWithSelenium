@@ -22,7 +22,8 @@ Scenario: Check book details
 	When I select category Books
 	And Search for book with title Harry Potter and the Cursed Child
 	And Navigate to 1st found book details
-	Then The book has following attributes
+	Then I am on the book details page
+	And The book has following attributes
 	| title                             | badge | type | price |
 	| Harry Potter and the Cursed Child | false | Paperback | 5.99  |
 

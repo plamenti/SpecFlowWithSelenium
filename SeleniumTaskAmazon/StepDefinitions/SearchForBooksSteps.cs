@@ -43,6 +43,13 @@ namespace SeleniumTaskAmazon.StepDefinitions
             foundReusultsPage.NavigateToFoundBookDetails(position);
         }
 
+        [Then(@"I am on the book details page")]
+        public void ThenIAmOnTheBookDetailsPage()
+        {
+            Assert.IsTrue(bookDetailsPage.IsAt(), "Book details page is not operational");
+        }
+
+
         [Then(@"The book has following attributes")]
         public void VerifyBookBookDetails(Table table)
         {
