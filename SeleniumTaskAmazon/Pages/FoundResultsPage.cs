@@ -21,9 +21,9 @@ namespace SeleniumTaskAmazon.Pages
         {
         }
 
-        public ReadOnlyCollection<IWebElement> FoundResults => GetElements(allResults);// driver.FindElements(allResults);
+        public ReadOnlyCollection<IWebElement> FoundResults => GetElements(allResults);
 
-        public IWebElement FirstResult => FoundResults.ElementAtOrDefault(0);// .FirstOrDefault();
+        public IWebElement FirstResult => FoundResults.ElementAtOrDefault(0);
 
         public IWebElement GetElementAtPosition(int position)
         {
