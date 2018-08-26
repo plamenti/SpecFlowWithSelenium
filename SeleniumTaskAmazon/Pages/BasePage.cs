@@ -28,17 +28,16 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "NoSuchElementException - Failed to find elements!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "WebDriverTimeoutException - Failed to find elements!");
             }
             catch (StaleElementReferenceException ex)
             {
-                // find element again and retry
                 wait.Until(d => d.FindElement(by).Enabled);
 
                 return driver.FindElement(by);
@@ -55,17 +54,16 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "NoSuchElementException - Failed to find elements!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "WebDriverTimeoutException - Failed to find elements!");
             }
             catch (StaleElementReferenceException ex)
             {
-                // find element again and retry
                 wait.Until(d => d.FindElements(by).Count > 0);
 
                 return driver.FindElements(by);
@@ -84,17 +82,16 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "NoSuchElementException - Failed to send text to element!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "WebDriverTimeoutException - Failed to send text to element!");
             }
             catch (StaleElementReferenceException ex)
             {
-                // find element again and retry
                 wait.Until(d => d.FindElement(by).Displayed);
                 driver.FindElement(by).Clear();
                 driver.FindElement(by).SendKeys(valueToType);
@@ -110,12 +107,12 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "NoSuchElementException - Failed to send text to element!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "WebDriverTimeoutException - Failed to send text to element!");
             }
             catch (StaleElementReferenceException ex)
@@ -142,7 +139,6 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (StaleElementReferenceException ex)
             {
-                // find element again and retry
                 wait.Until(d => d.FindElement(by).Displayed);
             }
 
@@ -160,12 +156,12 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "NoSuchElementException - Failed to get text of element!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "WebDriverTimeoutException - Failed to get text of element!");
             }
 
@@ -183,12 +179,12 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, $"NoSuchElementException - Failed to get attribute {attribute} of element!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, $"WebDriverTimeoutException - Failed to get attribute {attribute} of element!");
             }
 
@@ -206,17 +202,16 @@ namespace SeleniumTaskAmazon.Pages
             }
             catch (NoSuchElementException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "NoSuchElementException - Failed to find select element!");
             }
             catch (WebDriverTimeoutException ex)
             {
-                //TODO: Log Error
+                //TODO: Log Error in Logger
                 Assert.True(false, "WebDriverTimeoutException - Failed to find select element!");
             }
             catch (StaleElementReferenceException ex)
             {
-                // find element again and retry
                 wait.Until(d => d.FindElement(by).Enabled);
                 IWebElement select = driver.FindElement(by);
                 var selectElement = new SelectElement(select);
