@@ -13,6 +13,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         private IWait<IWebDriver> wait;
         private HomePage homePage;
         private FoundResultsPage foundResultsPage;
+        private BookDetailsPage bookDetailsPage;
 
         [BeforeScenario]
         public void setupDriver()
@@ -20,11 +21,13 @@ namespace SeleniumTaskAmazon.StepDefinitions
             driver = DriverManager.GetDriver();
             wait = WaitManager.GetDefaultWait(driver);
             homePage = new HomePage(driver, wait);
+            bookDetailsPage = new BookDetailsPage(driver, wait);
             foundResultsPage = new FoundResultsPage(driver, wait);
             ScenarioContext.Current.Set<IWebDriver>(driver);
             ScenarioContext.Current.Set<IWait<IWebDriver>>(wait);
             ScenarioContext.Current.Set<HomePage>(homePage);
             ScenarioContext.Current.Set<FoundResultsPage>(foundResultsPage);
+            ScenarioContext.Current.Set<BookDetailsPage>(bookDetailsPage);
         }
 
         [AfterScenario]
