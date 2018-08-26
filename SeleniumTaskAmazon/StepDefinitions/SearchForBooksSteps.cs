@@ -33,6 +33,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         {
             expectedBook = table.CreateInstance<Book>();
             actualBook = foundReusultsPage.GetFoundBook(position);
+            ScenarioContext.Current.Set<Book>(actualBook);
 
             VerifyBooksAreEquals(expectedBook, actualBook);
         }
