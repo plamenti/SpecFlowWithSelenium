@@ -11,6 +11,7 @@ namespace SeleniumTaskAmazon.Pages
         private By badge = By.XPath("//div[contains(@id, 'Badge')]//i");
         private By price = By.XPath("//li[contains(@class,' selected')]//a[@role='button']/span[2]");
         private By format = By.XPath("//li[contains(@class,' selected')]//a[@role='button']/span[1]");
+        private By addToBasketButton = By.Id("add-to-cart-button");
 
         public BookDetailsPage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver, wait)
         {
@@ -44,6 +45,11 @@ namespace SeleniumTaskAmazon.Pages
             double priceValue = ParcePrice(foundPriceAsText);
 
             return priceValue;
+        }
+
+        public void AddBookToBasket()
+        {
+            Click(addToBasketButton);
         }
 
         public Book GetBook()

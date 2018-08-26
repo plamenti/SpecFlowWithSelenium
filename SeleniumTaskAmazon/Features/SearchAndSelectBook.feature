@@ -27,4 +27,13 @@ Scenario: Check book details
 	| title                             | badge | type | price |
 	| Harry Potter and the Cursed Child | false | Paperback | 5.99  |
 
+Scenario: Add and edit book to the basket
+	When I select category Books
+	And Search for book with title Harry Potter and the Cursed Child
+	And Navigate to 1st found book details
+	And Add book to the basket
+	Then The notification is shown
+	And With title Added to Basket
+	And There is 1 item in the basket
+
 
