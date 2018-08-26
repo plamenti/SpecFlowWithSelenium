@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 
@@ -220,6 +221,14 @@ namespace SeleniumTaskAmazon.Pages
                 var selectElement = new SelectElement(select);
                 selectElement.SelectByText(elementTextValue);
             }
+        }
+
+        protected void HoverOverElement(By by)
+        {
+            IWebElement element = GetElement(by);
+
+            Actions action = new Actions(driver);
+            action.MoveToElement(element).Perform();
         }
 
         protected double ParcePrice(string foundPriceAsText)
