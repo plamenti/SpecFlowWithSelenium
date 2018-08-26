@@ -12,6 +12,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
     {
         private HomePage homePage = ScenarioContext.Current.Get<HomePage>();
         private FoundResultsPage foundReusultsPage = ScenarioContext.Current.Get<FoundResultsPage>();
+        private BookDetailsPage bookDetailsPage = ScenarioContext.Current.Get<BookDetailsPage>();
         private Book expectedBook;
         private Book actualBook;
 
@@ -37,22 +38,18 @@ namespace SeleniumTaskAmazon.StepDefinitions
         }
 
         [When(@"Navigate to (.*) found book details")]
-        public void NavigateBookDetails(int position)
+        public void NavigateToBookDetails(int position)
         {
             foundReusultsPage.NavigateToFoundBookDetails(position);
         }
 
         [Then(@"The book has following attributes")]
-        public void ThenTheBookHasFollowingAttributes(Table table)
+        public void VerifyBookBookDetails(Table table)
         {
-            ScenarioContext.Current.Pending();
-        }
+            expectedBook = table.CreateInstance<Book>();
+            actualBook = bookDetailsPage.GetBook();
 
-
-        [StepArgumentTransformation(@"(\d+)(?:st|nd|rd|th)")]
-        public int GetIndex(int index)
-        {
-            return index - 1;
+            VerifyBooksAreEquals(expectedBook, actualBook);
         }
 
         private void VerifyBooksAreEquals(Book expectedBook, Book actualBook)
