@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.ObjectModel;
 
 namespace SeleniumTaskAmazon.Pages
 {
@@ -16,6 +17,60 @@ namespace SeleniumTaskAmazon.Pages
         }
 
         public abstract bool IsAt();
+
+        public IWebElement GetElement(By by)
+        {
+            try
+            {
+                wait.Until(d => d.FindElement(by).Enabled);
+            }
+            catch (NoSuchElementException ex)
+            {
+                //TODO: Log Error
+                Assert.True(false, "NoSuchElementException - Failed to find elements!");
+            }
+            catch (WebDriverTimeoutException ex)
+            {
+                //TODO: Log Error
+                Assert.True(false, "WebDriverTimeoutException - Failed to find elements!");
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                // find element again and retry
+                wait.Until(d => d.FindElement(by).Enabled);
+
+                return driver.FindElement(by);
+            }
+
+            return driver.FindElement(by);
+        }
+
+        public ReadOnlyCollection<IWebElement> GetElements(By by)
+        {
+            try
+            {
+                wait.Until(d => d.FindElements(by).Count > 0);
+            }
+            catch (NoSuchElementException ex)
+            {
+                //TODO: Log Error
+                Assert.True(false, "NoSuchElementException - Failed to find elements!");
+            }
+            catch (WebDriverTimeoutException ex)
+            {
+                //TODO: Log Error
+                Assert.True(false, "WebDriverTimeoutException - Failed to find elements!");
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                // find element again and retry
+                wait.Until(d => d.FindElements(by).Count > 0);
+
+                return driver.FindElements(by);
+            }
+
+            return driver.FindElements(by);
+        }
 
         public void SendKeys(By by, string valueToType)
         {
@@ -167,6 +222,13 @@ namespace SeleniumTaskAmazon.Pages
                 var selectElement = new SelectElement(select);
                 selectElement.SelectByText(elementTextValue);
             }
+        }
+
+        protected double ParcePrice(string foundPriceAsText)
+        {
+            string trimedPrice = foundPriceAsText.Trim(new char[] { '£' });
+
+            return double.Parse(trimedPrice);
         }
     }
 }
