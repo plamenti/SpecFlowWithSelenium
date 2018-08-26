@@ -27,13 +27,19 @@ namespace SeleniumTaskAmazon.StepDefinitions
             homePage.SearchForItem(title);
         }
 
-        [Then(@"First found item has following attributes")]
-        public void VerifyFirstItem(Table table)
+        [Then(@"(.*) found book has following attributes")]
+        public void VerifyFirstItem(int position, Table table)
         {
             expectedBook = table.CreateInstance<Book>();
-            actualBook = foundReusultsPage.GetFirstFoundBook();
+            actualBook = foundReusultsPage.GetFoundBook(position);
 
             VerifyBooksAreEquals(expectedBook, actualBook);
+        }
+
+        [StepArgumentTransformation(@"(\d+)(?:st|nd|rd|th)")]
+        public int GetIndex(int index)
+        {
+            return index - 1;
         }
 
         private void VerifyBooksAreEquals(Book expectedBook, Book actualBook)

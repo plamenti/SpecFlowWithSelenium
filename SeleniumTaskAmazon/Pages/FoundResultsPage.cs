@@ -23,39 +23,47 @@ namespace SeleniumTaskAmazon.Pages
 
         public ReadOnlyCollection<IWebElement> FoundResults => driver.FindElements(allResults);
 
-        public IWebElement FirstResult => FoundResults.FirstOrDefault();
+        public IWebElement FirstResult => FoundResults.ElementAtOrDefault(0);// .FirstOrDefault();
 
-        public string GetFirstFoundElementTitle()
+        public IWebElement GetElementAtPosition(int position)
         {
-            string foundTitle = FirstResult.FindElement(foundElementTitle).Text;
+            return FoundResults.ElementAtOrDefault(position);
+        }
+
+        public string GetFoundElementTitle(int position)
+        {
+            IWebElement foundElement = GetElementAtPosition(position);
+            string foundTitle = foundElement.FindElement(foundElementTitle).Text;
 
             return foundTitle;
         }
 
-        public string GetFirstFoundElementFormat()
+        public string GetFoundElementFormat(int position)
         {
-            string foundFormat = FirstResult.FindElement(foundElementFormat).Text;
+            IWebElement foundElement = GetElementAtPosition(position);
+            string foundFormat = foundElement.FindElement(foundElementFormat).Text;
 
             return foundFormat;
         }
 
-        public double GetFirstFoundElementPrice()
+        public double GetFoundElementPrice(int position)
         {
-            string foundPriceAsText = driver.FindElements(foundElementPrice).First().Text;
+            IWebElement foundElement = GetElementAtPosition(position);
+            string foundPriceAsText = foundElement.FindElements(foundElementPrice).First().Text;
             double price = ParcePrice(foundPriceAsText);
 
             return price;
         }
 
-        public bool GetFirstFoundElementBadge()
+        public bool GetFoundElementBadge(int position)
         {
-
+            IWebElement foundElement = GetElementAtPosition(position);
             bool foundKindleBadge;
             bool foundPrimeBadge;
 
             try
             {
-                IWebElement badge = FirstResult.FindElements(foundElementPrice).First().FindElement(foundElementKindleBadge);
+                IWebElement badge = foundElement.FindElements(foundElementPrice).First().FindElement(foundElementKindleBadge);
                 foundKindleBadge = true;
             }
             catch (NoSuchElementException)
@@ -69,7 +77,7 @@ namespace SeleniumTaskAmazon.Pages
 
             try
             {
-                IWebElement badge = FirstResult.FindElements(foundElementPrice).First().FindElement(foundElementPrimeBadge);
+                IWebElement badge = foundElement.FindElements(foundElementPrice).First().FindElement(foundElementPrimeBadge);
                 foundPrimeBadge = true;
             }
             catch (NoSuchElementException)
@@ -85,15 +93,16 @@ namespace SeleniumTaskAmazon.Pages
             return foundKindleBadge || foundPrimeBadge;
         }
 
-        public Book GetFirstFoundBook()
+        public Book GetFoundBook(int position)
         {
             Format foundItemFormat;
-            Enum.TryParse(GetFirstFoundElementFormat(), out foundItemFormat);
+            Enum.TryParse(GetFoundElementFormat(position), out foundItemFormat);
+
             return new Book
             {
-                Title = GetFirstFoundElementTitle(),
-                Price = GetFirstFoundElementPrice(),
-                Badge = GetFirstFoundElementBadge(),
+                Title = GetFoundElementTitle(position),
+                Price = GetFoundElementPrice(position),
+                Badge = GetFoundElementBadge(position),
                 Format = foundItemFormat
             };
         }
