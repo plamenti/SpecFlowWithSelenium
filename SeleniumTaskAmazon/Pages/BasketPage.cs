@@ -11,7 +11,7 @@ namespace SeleniumTaskAmazon.Pages
         private By editBasketButton = By.Id("hlb-view-cart-announce");
         private By confirmationLabel = By.XPath("//div[contains(@id, 'order-row-confirm')]/h1");
         private By bookTumbnail = By.Id("huc-v2-order-row-images");
-        private By bookTitle = By.XPath("//div[@id='mdp-title']//span[contains(@class, 'product-title')]");
+        private By basketCount = By.XPath("//div[@id='hlb-subcart']//span/span");
 
         public BasketPage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver, wait)
         {
@@ -34,7 +34,10 @@ namespace SeleniumTaskAmazon.Pages
 
         public int GetItemsCount()
         {
-            throw new NotImplementedException();
+            string countContainerContent = GetElementText(basketCount);
+            int count = GetFirstNumberOccurence(countContainerContent);
+
+            return count;
         }
 
         public string GetLabelTitle()
