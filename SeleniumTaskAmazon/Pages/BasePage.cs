@@ -17,8 +17,6 @@ namespace SeleniumTaskAmazon.Pages
 
         public abstract bool IsAt();
 
-        public abstract void NavigateTo();
-        
         public void SendKeys(By by, string valueToType)
         {
             try
@@ -45,7 +43,7 @@ namespace SeleniumTaskAmazon.Pages
                 driver.FindElement(by).SendKeys(valueToType);
             }
         }
-        
+
         public void Click(By by)
         {
             try
@@ -70,7 +68,7 @@ namespace SeleniumTaskAmazon.Pages
                 driver.FindElement(by).Click();
             }
         }
-        
+
         public bool CheckElementIsVisible(By by)
         {
             try
@@ -95,7 +93,7 @@ namespace SeleniumTaskAmazon.Pages
 
             return true;
         }
-        
+
         public string GetElementText(By by)
         {
             string returnValue = "";
@@ -118,7 +116,7 @@ namespace SeleniumTaskAmazon.Pages
 
             return returnValue;
         }
-        
+
         public string GetElementAttributeValue(By by, string attribute)
         {
             string returnValue = "";

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 using System.Configuration;
 
 namespace SeleniumTaskAmazon.Pages
@@ -45,7 +44,7 @@ namespace SeleniumTaskAmazon.Pages
             return isSearchFieldVisible && issearchButtonVisible;
         }
 
-        public override void NavigateTo()
+        public void NavigateTo()
         {
             driver.Navigate().GoToUrl(BaseUrl);
         }
