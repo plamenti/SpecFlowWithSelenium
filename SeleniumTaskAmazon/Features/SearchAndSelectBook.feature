@@ -33,7 +33,7 @@ Scenario: Add and edit book to the basket
 	And Navigate to 1st found book details
 	And Add book to the basket
 	Then The notification is shown
-	And With title Added to Basket
+	And Notification title is Added to Basket
 	And There is 1 item in the basket
 
 

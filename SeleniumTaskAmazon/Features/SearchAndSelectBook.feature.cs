@@ -185,7 +185,7 @@ this.FeatureBackground();
 #line 35
  testRunner.Then("The notification is shown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 36
- testRunner.And("With title Added to Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Notification title is Added to Basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 37
  testRunner.And("There is 1 item in the basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
