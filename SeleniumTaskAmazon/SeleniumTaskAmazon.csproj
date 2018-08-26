@@ -79,7 +79,6 @@
     </Compile>
     <Compile Include="Helpers\DriverManager.cs" />
     <Compile Include="Helpers\WaitManager.cs" />
-    <Compile Include="Models\Badge.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Format.cs" />
     <Compile Include="Pages\BasePage.cs" />

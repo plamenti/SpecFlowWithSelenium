@@ -42,9 +42,9 @@ namespace SeleniumTaskAmazon.StepDefinitions
             };
 
             Assert.IsTrue(actualBook.Title.Contains(expectedBook.Title), "Title is not equal");
-            Assert.IsTrue(actualBook.Badge == expectedBook.Badge, "Badge is not equal");
-            Assert.IsTrue(actualBook.Format == expectedBook.Format, "Format is not equal");
-            Assert.IsTrue(actualBook.Price == expectedBook.Price, "Price is not equal");
+            Assert.IsTrue(expectedBook.Badge == actualBook.Badge, "Badge is not equal");
+            Assert.IsTrue(expectedBook.Format == actualBook.Format, "Format is not equal");
+            Assert.IsTrue(expectedBook.Price == actualBook.Price, "Price is not equal");
         }
 
     }
