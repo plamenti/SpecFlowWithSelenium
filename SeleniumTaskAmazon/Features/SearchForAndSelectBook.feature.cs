@@ -145,8 +145,19 @@ this.FeatureBackground();
  testRunner.And("Search for book with title Harry Potter and the Cursed Child", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
  testRunner.And("Navigate to 1st found book details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "title",
+                        "badge",
+                        "type",
+                        "price"});
+            table2.AddRow(new string[] {
+                        "Harry Potter and the Cursed Child",
+                        "true",
+                        "Paperback",
+                        "5.99"});
 #line 25
- testRunner.Then("The book has following attributes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("The book has following attributes", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

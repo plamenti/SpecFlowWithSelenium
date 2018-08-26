@@ -36,6 +36,19 @@ namespace SeleniumTaskAmazon.StepDefinitions
             VerifyBooksAreEquals(expectedBook, actualBook);
         }
 
+        [When(@"Navigate to (.*) found book details")]
+        public void NavigateBookDetails(int position)
+        {
+            foundReusultsPage.NavigateToFoundBookDetails(position);
+        }
+
+        [Then(@"The book has following attributes")]
+        public void ThenTheBookHasFollowingAttributes(Table table)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [StepArgumentTransformation(@"(\d+)(?:st|nd|rd|th)")]
         public int GetIndex(int index)
         {

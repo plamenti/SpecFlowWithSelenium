@@ -107,6 +107,12 @@ namespace SeleniumTaskAmazon.Pages
             };
         }
 
+        public void NavigateToFoundBookDetails(int position)
+        {
+            IWebElement foundElement = GetElementAtPosition(position);
+            foundElement.FindElement(foundElementTitle).Click();
+        }
+
         public override bool IsAt()
         {
             bool isResultsContainerVisible = CheckElementIsVisible(resultsContainer);
