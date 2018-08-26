@@ -35,5 +35,11 @@ Scenario: Add and edit book to the basket
 	Then The notification is shown
 	And Notification title is Added to Basket
 	And There is 1 item in the basket
+	When I edit basket
+	Then The book is shown on the list
+	And The book is the same as on the search page
+	And Quantity is 1
+	And Total price is equal to quantity times book price
+	
 
 
