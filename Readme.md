@@ -18,10 +18,10 @@ The framework uses Selenium and SpecFlow with the following default settings:
 
 ### Driver configuration ###
 Browsers that can be used are:
-* Chrome - with value **chrome**
-* Firefox - with value **firefox**
-* Edge  with value **edge**
-*IE 1 - with value**ie**.
+* Chrome - with value in config: **chrome**
+* Firefox - with value in config: **firefox**
+* Edge - with value in config: **edge**
+* IE - with value in config: **ie**
 
 For example the default driver is **chrome** and the configuration is:
 ```xml
