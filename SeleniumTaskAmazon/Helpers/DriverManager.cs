@@ -14,17 +14,20 @@ namespace SeleniumTaskAmazon.Helpers
         {
             string driverType = ConfigurationManager.AppSettings.Get("driver").ToLower();
             IWebDriver driver;
-            //TODO: Log steps
+            string infoMessage = $"Driver type: {driverType}";
+
             switch (driverType)
             {
                 case "chrome":
                     driver = new ChromeDriver();
                     SetupDriverProperties(driver);
+                    LoggingManager.LogInfo(infoMessage);
                     return driver;
 
                 case "firefox":
                     driver = new FirefoxDriver();
                     SetupDriverProperties(driver);
+                    LoggingManager.LogInfo(infoMessage);
                     return driver;
 
                 case "ie":
@@ -37,17 +40,19 @@ namespace SeleniumTaskAmazon.Helpers
 
                     driver = new InternetExplorerDriver(options);
                     SetupDriverProperties(driver);
+                    LoggingManager.LogInfo(infoMessage);
                     return driver;
 
                 case "edge":
                     driver = new EdgeDriver();
                     SetupDriverProperties(driver);
+                    LoggingManager.LogInfo(infoMessage);
                     return driver;
 
                 default:
-                    //TODO: Log Error
-                    Console.WriteLine($"No such browser: {driverType}");
-                    throw new ArgumentException("Invalid browser name argument!");
+                    string errorMessage = $"Invalid browser name argument! No such browser: {driverType}";
+                    LoggingManager.LogError(errorMessage);
+                    throw new ArgumentException(errorMessage);
             }
         } 
 
