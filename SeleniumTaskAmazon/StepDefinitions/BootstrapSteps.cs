@@ -70,9 +70,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         [AfterScenario]
         public void TearDownDriver()
         {
-            driver.Close();
-            driver.Quit();
-            driver.Dispose();
+            DriverManager.TearDownDriver(driver);
         }
 
         [AfterScenario]

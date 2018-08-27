@@ -19,12 +19,12 @@ namespace SeleniumTaskAmazon.Helpers
             {
                 case "chrome":
                     driver = new ChromeDriver();
-                    setupDriverProperties(driver);
+                    SetupDriverProperties(driver);
                     return driver;
 
                 case "firefox":
                     driver = new FirefoxDriver();
-                    setupDriverProperties(driver);
+                    SetupDriverProperties(driver);
                     return driver;
 
                 case "ie":
@@ -36,12 +36,12 @@ namespace SeleniumTaskAmazon.Helpers
                     };
 
                     driver = new InternetExplorerDriver(options);
-                    setupDriverProperties(driver);
+                    SetupDriverProperties(driver);
                     return driver;
 
                 case "edge":
                     driver = new EdgeDriver();
-                    setupDriverProperties(driver);
+                    SetupDriverProperties(driver);
                     return driver;
 
                 default:
@@ -51,9 +51,17 @@ namespace SeleniumTaskAmazon.Helpers
             }
         } 
 
-        private static void setupDriverProperties(IWebDriver driver)
+        public static void TearDownDriver(IWebDriver driver)
+        {
+            driver.Close();
+            driver.Quit();
+            driver.Dispose();
+        }
+
+        private static void SetupDriverProperties(IWebDriver driver)
         {
             driver.Manage().Window.Maximize();
+            driver.Manage().Cookies.DeleteAllCookies();
         }
     }
 }
