@@ -20,8 +20,9 @@ namespace SeleniumTaskAmazon.Helpers
 
             if (driver == null)
             {
-                //TODO: Log Error
-                throw new ArgumentNullException("Driver used in Wait can not be null!");
+                string errorMessage = "Driver used in Wait can not be null!";
+                LoggingManager.LogError(errorMessage);
+                throw new ArgumentNullException(errorMessage);
             }
 
             return new WebDriverWait(driver, TimeSpan.FromMilliseconds(timeout));
