@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Text.RegularExpressions;
 
 namespace SeleniumTaskAmazon.Pages
@@ -10,6 +11,7 @@ namespace SeleniumTaskAmazon.Pages
     public abstract class BasePage
     {
         private IWait<IWebDriver> wait;
+        protected readonly string BaseUrl = ConfigurationManager.AppSettings.Get("url");
         protected IWebDriver driver;
 
         public BasePage(IWebDriver driver, IWait<IWebDriver> wait)
