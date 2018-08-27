@@ -7,7 +7,7 @@ namespace SeleniumTaskAmazon.Helpers
 {
     public class WaitManager
     {
-        private const int DefaultTimeoutTime = 5000;
+        private const int DefaultTimeoutTime = 3000;
 
         public static IWait<IWebDriver> GetDefaultWait(IWebDriver driver)
         {
