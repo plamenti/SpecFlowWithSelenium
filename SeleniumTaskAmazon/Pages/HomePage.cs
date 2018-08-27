@@ -1,23 +1,21 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System.Configuration;
+using SeleniumTaskAmazon.Pages.PageSections;
 
 namespace SeleniumTaskAmazon.Pages
 {
     public class HomePage : BasePage
     {
-        private readonly string BaseUrl = ConfigurationManager.AppSettings.Get("url");
-          
-        private By logo = By.Id("nav-logo");
-        private By cart = By.Id("nav-cart-count");
-        private By footer = By.Id("navFooter");
-        private By searchButton = By.XPath("//input[@value='Go']");
-        private By searchField = By.Id("twotabsearchtextbox");
-        private By searchDropdown = By.Id("searchDropdownBox");
-        private By helloGreeting = By.XPath("//a[@id='nav-link-yourAccount']/span[@class='nav-line-1']");
+        private HeaderSection header;
+        private FooterSection footer;
+        private By slidebar = By.Id("sidebar-top");
+        private By featuredItemsContainer = By.Id("gw-desktop-herotator");
+        private By desktopTopItemsContainer = By.Id("desktop-top");
 
         public HomePage(IWebDriver driver, IWait<IWebDriver> wait) : base(driver, wait)
         {
+            this.header = new HeaderSection(driver, wait);
+            this.footer = new FooterSection(driver, wait);
         }
 
         public string GetTitle()
@@ -30,43 +28,42 @@ namespace SeleniumTaskAmazon.Pages
             return driver.Url;
         }
 
-        public bool IsLoggedInAs(string username)
-        {
-            string greetingLabel = GetElementText(helloGreeting);
-            return greetingLabel.Contains(username);
-        }
-
-        public bool CanSearch()
-        {
-            bool isSearchFieldVisible = CheckElementIsVisible(searchField);
-            bool issearchButtonVisible = CheckElementIsVisible(searchButton);
-
-            return isSearchFieldVisible && issearchButtonVisible;
-        }
-
         public void NavigateTo()
         {
             driver.Navigate().GoToUrl(BaseUrl);
         }
 
-        public void SelectCategory(string category)
+        public bool IsLoggedInAs(string username)
         {
-            SelectElementFromDrodownByText(searchDropdown, category);
+            return header.IsLoggedInAs(username);
+        }
+
+        public bool CanSearch()
+        {
+            return header.CanSearch();
+        }
+
+        public void SelectSearchCategory(string category)
+        {
+            header.SelectCategory(category);
         }
 
         public void SearchForItem(string item)
         {
-            SendKeys(searchField, item);
-            Click(searchButton);
+            header.SearchForItem(item);
         }
 
         public override bool IsAt()
         {
-            bool isLogoVisible = CheckElementIsVisible(logo);
-            bool isCartVisible = CheckElementIsVisible(cart);
-            bool isFooterVisible = CheckElementIsVisible(footer);
+            bool isSlidebarVisible = CheckElementIsVisible(slidebar);
+            bool isfeaturedItemsContainerVisible = CheckElementIsVisible(featuredItemsContainer);
+            bool isdesktopTopItemsContainerVisible = CheckElementIsVisible(desktopTopItemsContainer);
 
-            return isLogoVisible && isCartVisible && isFooterVisible;
+            return header.IsAt() &&
+                footer.IsAt() &&
+                isSlidebarVisible &&
+                isfeaturedItemsContainerVisible &&
+                isdesktopTopItemsContainerVisible;
         }
     }
 }
