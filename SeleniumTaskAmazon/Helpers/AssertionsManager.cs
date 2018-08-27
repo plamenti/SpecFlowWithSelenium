@@ -12,10 +12,13 @@ namespace SeleniumTaskAmazon.Helpers
             {
                 Assert.IsTrue(assertedValue);
                 extentTest.Pass(reportingMessage);
+                LoggingManager.LogInfo(reportingMessage);
             }
             catch (AssertionException)
             {
-                extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "'", MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                string errorMessage = "Failure occurred when executing check '" + reportingMessage + "'";
+                extentTest.Fail(errorMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                LoggingManager.LogError(errorMessage);
                 throw;
             }
         }
@@ -26,16 +29,21 @@ namespace SeleniumTaskAmazon.Helpers
             {
                 Assert.AreEqual(expectedValue, actualValue);
                 extentTest.Pass(reportingMessage);
+                LoggingManager.LogInfo(reportingMessage);
             }
             catch (AssertionException)
             {
+                string errorMessage = "Failure occurred when executing check '" + reportingMessage + "'";
+
                 if (driver != null)
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "'", MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    extentTest.Fail(errorMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    LoggingManager.LogError(errorMessage);
                 }
                 else
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "'");
+                    extentTest.Fail(errorMessage);
+                    LoggingManager.LogError(errorMessage);
                 }
                 throw;
             }
@@ -47,16 +55,21 @@ namespace SeleniumTaskAmazon.Helpers
             {
                 Assert.AreEqual(expectedValue, actualValue);
                 extentTest.Pass(reportingMessage);
+                LoggingManager.LogInfo(reportingMessage);
             }
             catch (AssertionException)
             {
+                string errorMessage = "Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue;
+
                 if (driver != null)
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    extentTest.Fail(errorMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    LoggingManager.LogError(errorMessage);
                 }
                 else
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue);
+                    extentTest.Fail(errorMessage);
+                    LoggingManager.LogError(errorMessage);
                 }
                 throw;
             }
@@ -68,16 +81,21 @@ namespace SeleniumTaskAmazon.Helpers
             {
                 Assert.AreEqual(expectedValue, actualValue);
                 extentTest.Pass(reportingMessage);
+                LoggingManager.LogInfo(reportingMessage);
             }
             catch (AssertionException)
             {
+                string errorMessage = "Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue;
+
                 if (driver != null)
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    extentTest.Fail(errorMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    LoggingManager.LogError(errorMessage);
                 }
                 else
                 {
                     extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue);
+                    LoggingManager.LogError(errorMessage);
                 }
                 throw;
             }
@@ -89,16 +107,21 @@ namespace SeleniumTaskAmazon.Helpers
             {
                 Assert.AreEqual(expectedValue, actualValue);
                 extentTest.Pass(reportingMessage);
+                LoggingManager.LogInfo(reportingMessage);
             }
             catch (AssertionException)
             {
+                string errorMessage = "Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue;
+
                 if (driver != null)
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    extentTest.Fail(errorMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(ScreenShotsManager.CreateScreenshot(driver)).Build());
+                    LoggingManager.LogError(errorMessage);
                 }
                 else
                 {
-                    extentTest.Fail("Failure occurred when executing check '" + reportingMessage + "', actual value was " + actualValue);
+                    extentTest.Fail(errorMessage);
+                    LoggingManager.LogError(errorMessage);
                 }
                 throw;
             }
