@@ -121,6 +121,8 @@
     <Compile Include="Pages\BookDetailsPage.cs" />
     <Compile Include="Pages\FoundResultsPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\PageSections\FooterSection.cs" />
+    <Compile Include="Pages\PageSections\HeaderSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepDefinitions\BasketOperationsSteps.cs" />
     <Compile Include="StepDefinitions\BootstrapSteps.cs" />

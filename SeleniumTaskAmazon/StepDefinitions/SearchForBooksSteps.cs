@@ -22,7 +22,7 @@ namespace SeleniumTaskAmazon.StepDefinitions
         [When(@"I select category (.*)")]
         public void SelectCategory(string category)
         {
-            homePage.SelectCategory(category);
+            homePage.SelectSearchCategory(category);
         }
 
         [When(@"Search for book with title (.*)")]
