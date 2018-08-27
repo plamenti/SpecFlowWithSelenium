@@ -2,7 +2,7 @@
 
 ### **Important:** First restore project dependencies. One approach to do this is just to build the project. ###
 
-#### The Testing Framework is powered by **NUnit**, **Selenium** and **SpecFlow** ####
+#### The Testing Framework is powered by **NUnit**, **Selenium** and **SpecFlow**. ####
 
 If no unit tests are shown in Visual Studio Test Explorer, there could be several reasons. One of the most likely is an inconsistency between the **Default Process Architecture in the Test Settings** and **Platform target architecure**. They should be equal - x64 or x86. To fix this set the architecture specified in the menu at **Test -> Test Settings -> Default Processor Architecture** with the value of the **Platform Target**. To verify the latter **Right click on the project -> Properties -> Build -> Platform target:**
 
@@ -13,7 +13,7 @@ The framework uses Selenium and SpecFlow with the following default settings:
 * Reports folder name - Reports
 * Logs folder name - Logs
 
-## In order to change some of the default settings open App.config file and change the value of the related key. ##
+### In order to change some of the default settings open App.config file and change the value of the related key. ###
 ***
 
 ### Driver configuration ###
@@ -23,7 +23,7 @@ Browsers that can be used are:
 * Edge  with value **edge**
 *IE 1 - with value**ie**.
 
-For example to the default driver is **chrome** and the configuration is:
+For example the default driver is **chrome** and the configuration is:
 ```xml
     <add key="driver" value="chrome" />
 ```
