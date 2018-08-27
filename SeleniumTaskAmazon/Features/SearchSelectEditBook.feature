@@ -3,10 +3,6 @@
 	As a not registered client
 	I want to find a book, add it to cart and edit it
 
-#Background: 
-#	Given I navigate to Amazon book store in UK
-#	And I am not logged in
-
 Scenario: Search, Select and Edit a book in Amazone UK store
 	Given I navigate to Amazon book store in UK
 	And I am not logged in
